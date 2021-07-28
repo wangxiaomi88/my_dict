@@ -1,4 +1,4 @@
-import pymysql
+import pymysql,re
 
 db = pymysql.connect(host="localhost",
                      port=3306,
@@ -17,9 +17,13 @@ data=[]
 count=0
 with open("dict.txt", "r") as f:
     for line in f:
+
         word, explanation = line.split(" ",1)
         count+=1
         data.append((count,word,explanation.strip()))
+
+        # tup = re.findall(r"(\w+)\s+(.*)")[0]
+        # data.append(tup)
 
 print(len(data))
 
